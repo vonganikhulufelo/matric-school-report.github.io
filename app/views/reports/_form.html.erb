@@ -1,0 +1,62 @@
+<%= form_with(model: report, local: true) do |form| %>
+  <% if report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+
+      <ul>
+      <% report.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :emis %>
+    <%= form.text_field :emis, id: :report_emis %>
+  </div>
+
+  <div class="field">
+    <%= form.label :centre_no %>
+    <%= form.text_field :centre_no, id: :report_centre_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :school_name %>
+    <%= form.text_field :school_name, id: :report_school_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :wrote_2014 %>
+    <%= form.number_field :wrote_2014, id: :report_wrote_2014 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :passed_2014 %>
+    <%= form.number_field :passed_2014, id: :report_passed_2014 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :wrote_2015 %>
+    <%= form.number_field :wrote_2015, id: :report_wrote_2015 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :passed_2015 %>
+    <%= form.number_field :passed_2015, id: :report_passed_2015 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :wrote_2016 %>
+    <%= form.number_field :wrote_2016, id: :report_wrote_2016 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :passed_2016 %>
+    <%= form.number_field :passed_2016, id: :report_passed_2016 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

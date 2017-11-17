@@ -1,0 +1,10 @@
+{
+  "name": "matric_report",
+  "private": true,
+  "dependencies": {
+    "rails-js": "^0.5.11"
+  },
+  "devDependencies": {
+    "coffeescript": "^2.0.2"
+  }
+}

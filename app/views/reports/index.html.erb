@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+<h3>Import file</h3>
+
+<%= form_tag import_reports_path, multipart: true, class: "form-inline my-2 my-lg-0" do %>
+ <%= file_field_tag :file, class: "form-control mr-sm-2" %>
+ <%= submit_tag "Upload report" ,class: "btn btn-outline-success my-2 my-sm-0"%>
+ <% end %>
+
+<h1>Reports</h1>
+
+<table class = "table">
+  <thead class = "thead-dark">
+    <tr>
+      <th>Emis</th>
+      <th>Centre no</th>
+      <th>School name</th>
+      <th>Wrote 2014</th>
+      <th>Passed 2014</th>
+      <th>Wrote 2015</th>
+      <th>Passed 2015</th>
+      <th>Wrote 2016</th>
+      <th>Passed 2016</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.emis %></td>
+        <td><%= report.centre_no %></td>
+        <td><%= report.school_name %></td>
+        <td><%= report.wrote_2014 %></td>
+        <td><%= report.passed_2014 %></td>
+        <td><%= report.wrote_2015 %></td>
+        <td><%= report.passed_2015 %></td>
+        <td><%= report.wrote_2016 %></td>
+        <td><%= report.passed_2016 %></td>
+        <td><%= link_to 'Show', report %></td>
+        <td><%= link_to 'Edit', edit_report_path(report) %></td>
+        <td><%= link_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Report', new_report_path %>

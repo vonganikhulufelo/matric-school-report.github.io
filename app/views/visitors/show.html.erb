@@ -1,0 +1,136 @@
+ 
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  
+  </head>
+  <body>
+    <td><%= link_to 'Please refresh here if there is no graph', visitor_url(@report), class: "btn" %></td>
+      
+      <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Pass Rate', 'Failure rate'],
+          ['2014', <%= @report.pass_rate.round(2) %>, <%= @report.failure_rate %>],
+          ['2015', <%= @report.pass_rate2015 %>, <%= @report.failure_rate2015 %>],
+          ['2016', <%= @report.pass_rate2016 %>, <%= @report.failure_rate2016 %>]
+         
+        ]);
+
+        var options = {
+
+          chart: {
+            bg: '000000',
+            title: '<%= @report.school_name %>',
+            subtitle: 'Report analyser',
+            align: "center"
+          },
+           vAxis: {
+          title: 'Percentage (%)',
+          minValue: 0,
+          maxValue: 100,
+          format:'#,##%'
+        },
+        hAxis: {
+          title: 'Year'
+        },
+
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+<div class="container">
+  <div class="row">
+      <div id="barchart_material" style="width: 900px; height: 500px;" class="col-sm-6 col-md-3">
+     </div>
+  </div>
+</div>
+<div class="container">
+   <div class="row">
+  <p class="col-sm-6 col-md-3">
+  <strong>YEAR</strong>
+</p>
+  <p class="col-sm-6 col-md-3">
+  <strong>SCHOOL</strong>
+</p>
+<p class="col-sm-6 col-md-3">
+  <strong>NUMBER WROTE</strong>
+</p>
+<p class="col-sm-6 col-md-3">
+
+  <strong>NUMBER PASSED</strong>
+</p>
+</div>
+  <div class="row">
+    <p class="col-sm-6 col-md-3">
+  <strong>2014</strong>
+</p>
+  <p class="col-sm-6 col-md-3">
+  <strong><%= @report.school_name %></strong>
+</p>
+<p class="col-sm-6 col-md-3">
+ 
+  <strong><%= @report.wrote_2014 %></strong>
+   Wrote exams
+</p>
+<p class="col-sm-6 col-md-3">
+   Only
+  <strong><%= @report.passed_2014 %></strong>
+   passed exams
+</p>
+
+</div>
+ <div class="row">
+  <p class="col-sm-6 col-md-3">
+  <strong>2015</strong>
+</p>
+  <p class="col-sm-6 col-md-3">
+  <strong><%= @report.school_name %></strong>
+</p>
+<p class="col-sm-6 col-md-3">
+ 
+  <strong><%= @report.wrote_2015 %></strong>
+   Wrote exams
+</p>
+<p class="col-sm-6 col-md-3">
+   Only
+  <strong><%= @report.passed_2015 %></strong>
+   passed exams
+</p>
+
+</div>
+ <div class="row">
+  <p class="col-sm-6 col-md-3">
+  <strong>2016</strong>
+</p>
+  <p class="col-sm-6 col-md-3">
+  <strong><%= @report.school_name %></strong>
+</p>
+<p class="col-sm-6 col-md-3">
+ 
+  <strong><%= @report.wrote_2016 %></strong>
+   Wrote exams
+</p>
+<p class="col-sm-6 col-md-3">
+   Only
+  <strong><%= @report.passed_2016 %></strong>
+   passed exams
+</p>
+</div>
+</div>
+  </body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Pass Rate', 'Failure rate', 'Profit'],
+          ['2014', <%= @report.pass_rate.round(2) %>, <%= @report.failure_rate %>, <%= @report.pass_rate2016 %>],
+          ['2015', <%= @report.pass_rate2015 %>, <%= @report.failure_rate2015 %>, <%= @report.pass_rate2016 %>],
+          ['2016', <%= @report.pass_rate2016 %>, <%= @report.failure_rate2016 %>, <%= @report.pass_rate2016 %>]
+         
+        ]);
+
+        var options = {
+          chart: {
+          	isStacked: 'percent',
+          	bg: '000000',
+            title: '<%= @report.school_name %>',
+            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+          },
+           vAxis: {
+          title: 'Total Population',
+          minValue: 0,
+          maxValue: 100,
+          format:'#,##%'
+        },
+        hAxis: {
+          title: 'City'
+        },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+  </head>
+  <body>
+    <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+    <h1>Bars#index</h1>
+<p>Find me in app/views/bars/index.html.erb</p>
+
+<div id="ccontainer" class="container"><%= image_tag @bar %></div>
+
+<div class="container col-md-12">
+	<div class="row">
+		<h3>My Chart</h3>
+		<div id="chartcontainer" class="col-md-6"><%= @charts.render() %></div>
+		<div id="chart-container" class="col-md-6"><%= @chart.render() %></div>
+		
+	</div>
+</div>
+  </body>
+</html>
+
